@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import terser from '@rollup/plugin-terser'
-import config from './config.json' assert { type: "json" };
+import config from './config';
 
 const createBanner = () => {
   let banner = '// ==UserScript==\n'

@@ -1,4 +1,6 @@
-{
+import project from './package.json' assert { type: "json" };
+
+export default {
   "name": "压缩下载Pixiv gif图片",
   "icon": "https://www.google.com/s2/favicons?sz=64&domain=pixiv.net",
   "require": [
@@ -9,9 +11,9 @@
   "match": [
     "https://www.pixiv.net/artworks/*"
   ],
-  "author": "wanmanfung",
-  "description": "从Pixiv页面下载gif图片并压缩到6M以内",
-  "version": "0.1",
+  "author": project.author,
+  "description": project.description,
+  "version": project.version,
   "grant": [
     "none"
   ]
