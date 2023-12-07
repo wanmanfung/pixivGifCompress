@@ -1,0 +1,1 @@
+export const MAX_SIZE = 6 * 1024 * 1024
