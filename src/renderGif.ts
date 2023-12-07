@@ -32,8 +32,7 @@ async function load(id: string) {
   })
 
   if (meta.error) {
-    warning(meta.message)
-    throw 'meta.message'
+    throw meta.message
   }
 
   const file = await fetch(meta.body.src).then(res => {
@@ -41,7 +40,6 @@ async function load(id: string) {
   })
   closeDownloading()
   const closeDrawing = text('drawing...')
-  console.time('draw')
 
   let size = 1
 
@@ -62,7 +60,6 @@ async function load(id: string) {
 
   let cloasResizingMessage: () => void = () => { }
   while (b.size > MAX_SIZE) {
-    console.log(b.size, size);
     size *= 0.9
     while (b.size * size > MAX_SIZE) {
       size *= 0.9
@@ -72,9 +69,7 @@ async function load(id: string) {
     b = await draw(meta, zipFile, { resize: size })
     count++
   }
-
   success('ready')
-  console.timeEnd('draw')
   return {
     data: b,
     radix: size,

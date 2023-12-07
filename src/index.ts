@@ -11,13 +11,10 @@ const renderAndDownload = async (id: string) => {
 }
 
 window.addEventListener('keydown', (e) => {
-  console.log('dcdvcd');
-
   if (e.key === 'c' && e.ctrlKey) {
     const { pathname } = location
     const arr = pathname.split('/')
     renderAndDownload(arr[arr.length - 1]).catch(e => {
-      console.log(e);
       warning(e.toString())
     })
   }

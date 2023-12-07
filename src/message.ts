@@ -43,13 +43,10 @@ class message {
   }
 
   close() {
-    console.log(this);
-
     if (!this.shown) return
     setTimeout(() => {
       this.dom.style.setProperty('top', '0')
       this.dom.style.setProperty('opacity', '0')
-      console.log(this);
       this.shown = false
       setTimeout(() => {
         this.remove()
