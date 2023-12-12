@@ -13,16 +13,6 @@ const getWorker = () => {
   return window.URL.createObjectURL(b)
 }
 
-interface metaData {
-  error: boolean
-  message: string
-  body: {
-    frames: { file: string, delay: number }[]
-    mime_type: string
-    originalSrc: string
-    src: string
-  }
-}
 
 async function load(id: string) {
 

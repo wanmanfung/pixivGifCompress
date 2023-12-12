@@ -1,7 +1,6 @@
-export const loadImage = (str: string): Promise<CanvasImageSource> => {
+export const loadImage = (str: string): Promise<HTMLImageElement> => {
   const i = document.createElement('img')
-  i.width = 900
-  i.height = 200
+  i.crossOrigin = 'anonymous'
   i.style.cssText = `
     object-fit: contain;
   `

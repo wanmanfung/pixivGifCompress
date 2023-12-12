@@ -1,6 +1,6 @@
 {
   "name": "pixiv_gif_compress",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "从Pixiv页面下载gif图片并压缩到6M以内",
   "main": "index.js",
   "scripts": {

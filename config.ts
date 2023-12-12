@@ -9,12 +9,14 @@ export default {
   ],
   "run-at": "document-start",
   "match": [
-    "https://www.pixiv.net/artworks/*"
+    "https://www.pixiv.net/*"
   ],
   "author": project.author,
   "description": project.description,
   "version": project.version,
   "grant": [
-    "none"
+    "window.onurlchange",
+    "GM_registerMenuCommand",
+    "GM_unregisterMenuCommand"
   ]
 }
