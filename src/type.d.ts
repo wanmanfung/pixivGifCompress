@@ -12,3 +12,18 @@ declare interface metaData extends response {
     src: string
   }
 }
+
+interface requestBody {
+  body: {
+    illustId: string
+    illustType: number
+    pageCount: number
+    urls: {
+      "mini": string
+      "thumb": string
+      "small": string
+      "regular": string
+      "original": string
+    }
+  }
+}

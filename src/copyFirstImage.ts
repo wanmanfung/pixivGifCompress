@@ -1,26 +1,8 @@
 import { success, warning } from "./message"
 import { loadImage } from "./utils"
 
-interface requestBody {
-  body: {
-    illustId: string
-    urls: {
-      "mini": string
-      "thumb": string
-      "small": string
-      "regular": string
-      "original": string
-    }
-  }
-}
-
-export default async (id: string) => {
-  const source: response & requestBody = await fetch(`https://www.pixiv.net/ajax/illust/${id}`).then(res => res.json())
-  if (source.error) throw source.error
-  const data = source.body
-  const original = data.urls.original
-
-  const mainImg = await loadImage(original)
+export default async (path: string, text: string) => {
+  const mainImg = await loadImage(path)
 
   let { width, height } = mainImg
   while (width > 2000 || height > 2000) {
@@ -38,7 +20,7 @@ export default async (id: string) => {
   ctx.font = `${fz}px serif`
   ctx.fillStyle = '#fff'
   ctx.textBaseline = 'bottom'
-  ctx.fillText(`https://www.pixiv.net/artworks/${data.illustId}`, 20, cvs.height - 5)
+  ctx.fillText(text, 20, cvs.height - 5)
   cvs.toBlob((blob) => {
     if (!blob) {
       warning('toblob err')
