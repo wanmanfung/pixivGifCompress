@@ -1,6 +1,7 @@
 import copyFirstImage from "./copyFirstImage"
 import { warning } from "./message"
 import render from "./renderGif";
+import { getPages, isArtworkPage } from "./utils";
 
 export class ImageDownCtrl {
   id: string
@@ -34,6 +35,7 @@ export class ImageDownCtrl {
     const { pathname } = location
     this.downloadBtn.remove()
     this.multiSelector.remove()
+    if (!isArtworkPage(pathname)) return
     const arr = pathname.split('/')
     const id = arr[arr.length - 1]
 
@@ -74,15 +76,13 @@ export class ImageDownCtrl {
   }
 
   async multiImages() {
-    const pages: response & { body: { urls: { original: string } }[] } = await fetch(`https://www.pixiv.net/ajax/illust/${this.id}/pages?lang=zh`).then(res => res.json())
-    if (pages.error) throw pages.error
-    this.images = pages.body.map(i => i.urls.original)
+    const pages = await getPages(this.id)
+    this.images = pages.map(i => i.urls.original)
 
     this.multiSelector.innerHTML = '<option value="" disabled selected hidden>选择...</option>'
     for (let i = 0; i < this.pageCount; i++) {
       const opt = document.createElement('option')
       opt.value = i.toString()
-      opt.style.cssText = 'padding: 4px 11px;'
       opt.text = opt.value
       this.multiSelector.appendChild(opt)
     }
