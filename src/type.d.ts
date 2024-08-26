@@ -27,3 +27,8 @@ interface requestBody {
     }
   }
 }
+
+interface requestOptions extends RequestInfo {
+
+}
+declare function GM_xmlhttpRequest(opt: requestOptions)

@@ -1,14 +1,14 @@
 {
   "name": "pixiv_gif_compress",
   "version": "0.0.1",
-  "description": "从Pixiv页面下载gif图片并压缩到6M以内",
+  "description": "从Pixiv页面下载图片并压缩到6M以内\u002c在底部添加图片p站地址\u002c甚至还能下gif\u002c但是gif会有色差比较残疾\u002c跟我一样\u002c整体功能也是个残废\u002c跟我一样",
   "main": "index.js",
   "scripts": {
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
     "dev": "rollup -c --configPlugin @rollup/plugin-typescript --watch"
   },
   "keywords": [],
-  "author": "wanmanfung@gmail.com",
+  "author": "别盒我",
   "license": "ISC",
   "type": "module",
   "devDependencies": {

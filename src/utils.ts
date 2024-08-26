@@ -1,14 +1,25 @@
 export const loadImage = (str: string): Promise<HTMLImageElement> => {
-  const i = document.createElement('img')
-  i.crossOrigin = 'anonymous'
-  i.style.cssText = `
-    object-fit: contain;
-  `
   return new Promise((res) => {
-    i.onload = () => {
-      res(i)
-    }
-    i.src = str
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: str,
+      headers: {
+        referer: 'https://www.pixiv.net/'
+      },
+      responseType: 'blob',
+      onload(e: { response: Blob }) {
+        const b = e.response
+        const i = document.createElement('img')
+        i.crossOrigin = 'anonymous'
+        i.style.cssText = `
+        object-fit: contain;
+      `
+        i.src = window.URL.createObjectURL(b)
+        i.onload = () => {
+          res(i)
+        }
+      }
+    })
   })
 }
 

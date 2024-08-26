@@ -1,7 +1,7 @@
 import project from './package.json' assert { type: "json" };
 
 export default {
-  "name": "压缩下载Pixiv gif图片",
+  "name": "压缩下载Pixiv图片",
   "icon": "https://www.google.com/s2/favicons?sz=64&domain=pixiv.net",
   "require": [
     "https://cdn.jsdelivr.net/npm/gif.js.optimized@1.0.1/dist/gif.min.js",
@@ -17,6 +17,8 @@ export default {
   "grant": [
     "window.onurlchange",
     "GM_registerMenuCommand",
-    "GM_unregisterMenuCommand"
-  ]
+    "GM_unregisterMenuCommand",
+    "GM_xmlhttpRequest",
+  ],
+  "connect": ["i.pximg.net"],
 }
