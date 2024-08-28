@@ -1,5 +1,8 @@
-export const loadImage = (str: string): Promise<HTMLImageElement> => {
-  return new Promise((res) => {
+export const loadImage = (str: string, opt?: {
+  onprogress?(loaded: number, total: number): void
+  onloadstart?(): void
+}): Promise<HTMLImageElement> => {
+  return new Promise((res, rej) => {
     GM_xmlhttpRequest({
       method: 'GET',
       url: str,
@@ -18,6 +21,15 @@ export const loadImage = (str: string): Promise<HTMLImageElement> => {
         i.onload = () => {
           res(i)
         }
+      },
+      onloadstart() {
+        opt?.onloadstart?.()
+      },
+      onprogress(e: { loaded: number; total: number }) {
+        opt?.onprogress?.(e.loaded, e.total)
+      },
+      onerror(e: unknown) {
+        rej()
       }
     })
   })

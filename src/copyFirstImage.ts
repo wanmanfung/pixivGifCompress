@@ -2,7 +2,23 @@ import { success, warning } from "./message"
 import { loadImage } from "./utils"
 
 export default async (path: string, text: string) => {
-  const mainImg = await loadImage(path)
+  const progressTips = document.createElement('div')
+  progressTips.style.cssText = 'position: fixed; left: 40px; top: 120px; z-index: 99; padding: 4px 11px; border-radius: 4px; background: #fff;box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);'
+  document.body.appendChild(progressTips)
+  progressTips.innerHTML = `准备中`
+  const mainImg = await loadImage(path, {
+    onprogress(loaded, total) {
+      progressTips.innerHTML = `下载中 ===> ${loaded}/${total}`
+    },
+    onloadstart() {
+      progressTips.innerHTML = `开始下载`
+    },
+  }).catch(() => {
+    warning('download err')
+  }).finally(() => {
+    progressTips.remove()
+  })
+  if (!mainImg) return
 
   let { width, height } = mainImg
   while (width > 2000 || height > 2000) {
