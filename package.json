@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
-    "dev": "rollup -c --configPlugin @rollup/plugin-typescript --watch"
+    "dev": "rollup -c --configPlugin @rollup/plugin-typescript --watch",
+    "build_x": "rollup -c --configPlugin @rollup/plugin-typescript -i src/downloadXgif.ts"
   },
   "keywords": [],
   "author": "别盒我",
